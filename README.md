@@ -25,6 +25,25 @@ Requires JDK 17+ and Android SDK 36 (`compileSdk` / `targetSdk` 36, `minSdk` 26)
 APK: `app/build/outputs/apk/debug/app-debug.apk`  
 `applicationId`: `com.eliranrp.score421`
 
+Signed Play upload bundle (local keystore, **not** committed):
+
+```bash
+# keystore.properties from keystore.properties.example — never commit it
+./gradlew bundleRelease
+```
+
+AAB: `app/build/outputs/bundle/release/app-release.aab`
+
+## Pages (support / privacy)
+
+After GitHub Pages is enabled on `main` → `/docs`:
+
+- Support: https://eliranrp.github.io/421-score/
+- Privacy: https://eliranrp.github.io/421-score/privacy.html
+- FR: https://eliranrp.github.io/421-score/fr/
+
+Contact is GitHub issues. The site collects nothing.
+
 ## Unit tests
 
 ```bash

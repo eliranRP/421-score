@@ -1,7 +1,24 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+}
+
+fun signingProp(name: String): String? {
+    val env = System.getenv(name)
+    if (!env.isNullOrBlank()) return env
+    val fromProject = project.findProperty(name)?.toString()
+    if (!fromProject.isNullOrBlank()) return fromProject
+    val propsFile = rootProject.file("keystore.properties")
+    if (propsFile.exists()) {
+        val props = Properties()
+        propsFile.inputStream().use { props.load(it) }
+        val value = props.getProperty(name)
+        if (!value.isNullOrBlank()) return value
+    }
+    return null
 }
 
 android {
@@ -16,6 +33,27 @@ android {
         versionName = "1.0.0"
     }
 
+    val storeFilePath = signingProp("SCORE421_STORE_FILE")
+    val storePassword = signingProp("SCORE421_STORE_PASSWORD")
+    val keyAlias = signingProp("SCORE421_KEY_ALIAS")
+    val keyPassword = signingProp("SCORE421_KEY_PASSWORD")
+    val canSignRelease = !storeFilePath.isNullOrBlank() &&
+        !storePassword.isNullOrBlank() &&
+        !keyAlias.isNullOrBlank() &&
+        !keyPassword.isNullOrBlank() &&
+        file(storeFilePath).isFile
+
+    if (canSignRelease) {
+        signingConfigs {
+            create("release") {
+                storeFile = file(storeFilePath!!)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -23,6 +61,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            if (canSignRelease) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
         debug {
             versionNameSuffix = "-debug"
