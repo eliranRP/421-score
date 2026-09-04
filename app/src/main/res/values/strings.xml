@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">421 score</string>
+    <string name="setup_tagline">Feuille de café pour le 421</string>
+    <string name="setup_not_a_game">Ce n’est pas un jeu de dés : on inscrit les charges à la main, comme sur le papier.</string>
+    <string name="player_count">%d joueurs</string>
+    <string name="add_player">Ajouter un joueur</string>
+    <string name="remove_player">Retirer un joueur</string>
+    <string name="player_name_label">Joueur %d</string>
+    <string name="player_name_optional">Nom (facultatif)</string>
+    <string name="untitled_player">Joueur</string>
+    <string name="open_feuille">Ouvrir la feuille</string>
+    <string name="feuille_subtitle">Feuille — pas un dé</string>
+    <string name="round_label">Manche %d</string>
+    <string name="running_total">Total %d</string>
+    <string name="charge_this_round">Charge de la manche</string>
+    <string name="increase_charge">Plus</string>
+    <string name="decrease_charge">Moins</string>
+    <string name="special_421">421</string>
+    <string name="special_nenette">nénette</string>
+    <string name="special_macque">macque</string>
+    <string name="undo">Annuler</string>
+    <string name="next_round">Manche suivante</string>
+    <string name="reset_round">Reset manche</string>
+    <string name="reset_table">Nouvelle table</string>
+    <string name="reset_round_confirm">Effacer les charges et marques de cette manche ? Les totaux des manches précédentes restent.</string>
+    <string name="reset_table_confirm">Effacer toute la feuille et revenir à la table ? Les noms sont conservés.</string>
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
+</resources>
